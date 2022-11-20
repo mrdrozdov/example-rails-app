@@ -2,6 +2,8 @@
 
 <h1><%= @article.title %></h1>
 
+<p><%= "by #{User.find_by_id(@article.user_id).username}" %></p>
+
 <p><%= @article.body %></p>
 
 <ul>
@@ -15,5 +17,7 @@
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<% if logged_in? %>
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form' %>
+<% end %>
