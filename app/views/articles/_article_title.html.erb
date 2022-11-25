@@ -6,10 +6,11 @@
     <div>
         <span style="font-size: 10px; font-weight: normal;"><%= "Posted by #{User.find_by_id(article.user_id).username}" %></span>
         <span style="font-size: 10px; font-weight: normal;"><%= "[#{article.created_at}]" %></span>
-        <span style="font-size: 10px; font-weight: normal;"><%= link_to "Edit", edit_article_path(article) %></span>
+        <% if logged_in? && current_user.id == article.user_id %>
         <span style="font-size: 10px; font-weight: normal;"><%= link_to "Delete", article_path(article), data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
                       } %></span>
+        <% end %>
     </div>
 </div>
