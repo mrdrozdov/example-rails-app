@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all.sort_by { |x| x.created_at}.reverse
+    @articles = Article.all
   end
 
   def show
