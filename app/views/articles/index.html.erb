@@ -1,22 +1,24 @@
 <%= render "header" %>
 
 <% if logged_in? %>
-<p><strong>User Actions</strong></p>
-<ul>
-    <li><%= link_to "Write New Article", new_article_path %></li>
-</ul>
+<div style="padding: 4px; padding-bottom: 20px;">
+<div style="padding-bottom: 8px;">
+    <span style="font-size: 18px; font-weight: bold;">User Actions</span>
+</div>
+<div>
+    <div>
+    <span><%= link_to "Write New Article", new_article_path %></span>
+    </div>
+</div>
+</div>
 <% end %>
 
-<p><strong>Articles</strong></p>
+<div style="padding: 4px; padding-bottom: 20px;">
+    <span style="font-size: 18px; font-weight: bold;">Articles</span>
+</div>
 
-<ul>
-  <% @articles.each do |article| %>
-    <% unless article.archived? %>
-      <li>
-        <span><%= link_to "#{article.title}" , article %></span>
-        <span><%= "(by #{User.find_by_id(article.user_id).username})" %></span>
-        <span><small><%= "[#{article.created_at}]" %></small></span>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<% @articles.each do |article| %>
+<% unless article.archived? %>
+<%= render partial: "article_title", locals: {article: article} %>
+<% end %>
+<% end %>
